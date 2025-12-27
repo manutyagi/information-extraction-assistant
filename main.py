@@ -6,18 +6,18 @@ import streamlit as st
 from rag import process_urls, generate_answer
 
 #st.title("Real Estate Research Tool")
-st.title("Information Extraction Assistant")
+st.title("Information Extraction Assistant: Ask anything from web links")
 
 #url1 = st.sidebar.text_input("URL 1")
 #url2 = st.sidebar.text_input("URL 2")
 #url3 = st.sidebar.text_input("URL 3")
 st.sidebar.subheader("Enter URLs")
-url_list_text = st.sidebar.text_area("Paste one URL per line")
+url_list_text = st.sidebar.text_area("Paste comma-separated links")
 urls = [u.strip() for u in url_list_text.split("\n") if u.strip()]
 
 placeholder = st.empty()
 
-process_url_button = st.sidebar.button("Process URLs")
+process_url_button = st.sidebar.button("Process URLs before asking any question")
 if process_url_button:
     #urls = [url for url in (url1, url2, url3) if url!='']
     if len(urls) == 0:
@@ -26,7 +26,7 @@ if process_url_button:
         for status in process_urls(urls):
             placeholder.text(status)
 
-query = placeholder.text_input("Question")
+query = placeholder.text_input("Write the question you want to ask about the pasted URLs")
 if query:
     try:
         answer, sources = generate_answer(query)
@@ -35,7 +35,7 @@ if query:
 
         if sources:
             st.subheader("Sources:")
-            for source in sources.split("\n"):
+            for source in sources.split(","):
                 st.write(source)
     except RuntimeError as e:
         placeholder.text("You must process urls first")
