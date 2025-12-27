@@ -16,4 +16,4 @@ requests
 python-dotenv
 sentence-transformers
 pysqlite3-binary
-lxml_html_clean
+lxml==4.9.4
