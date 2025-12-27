@@ -2,13 +2,14 @@ from uuid import uuid4
 from dotenv import load_dotenv
 from pathlib import Path
 #from langchain.chains import RetrievalQAWithSourcesChain
-from langchain.chains import RetrievalQA
+#from langchain.chains import RetrievalQA ====
+from langchain_community.chains import RetrievalQA
 #from langchain_community.document_loaders import UnstructuredURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_groq import ChatGroq
-from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-
+#from langchain_huggingface.embeddings import HuggingFaceEmbeddings ====
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.schema import Document
 from browser_loader import fetch_page_html
 from langchain.prompts import PromptTemplate
